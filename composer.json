@@ -18,7 +18,7 @@
     ],
     "require": {
         "php" : "~8.0",
-        "toddminertech/minertechdatautils" : "^1.0.0",
+        "toddminertech/minertechdatautils" : "^1.1",
         "illuminate/support": "^6|^7|^8|^9"
     },
     "require-dev": {
