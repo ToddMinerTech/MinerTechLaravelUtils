@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ToddMinerTech\LaravelUtils;
+namespace ToddMinerTech\MinerTechLaravelUtils;
 
+use Closure;
 use Illuminate\Support\Collection;
-use ToddMinerTech\DataUtils\StringUtil;
+use ToddMinerTech\MinerTechDataUtils\ResultObject;
+use ToddMinerTech\MinerTechDataUtils\StringUtil;
 
 /**
  * Class CollectionUtil
@@ -131,5 +133,29 @@ class CollectionUtil
             return $valueToMatch;
         }
         return $matchedObject->$attributeToReturn;
+    }
+
+    /**
+     * mapValueInObjectCollectionWithResult
+     *
+     * Wraps matchValueInObjectCollection to provide a specific mapped output value from search criteria and collection of objects.
+     * 
+     * @param string $valueToMatch The value you are trying to match within the object attribute
+     * 
+     * @param string $attributeToMatch The attribute name you want to check the value of
+     * 
+     * @param string $attributeToReturn The attribute name you want to return from the matched object
+     * 
+     * @param collection $collectionToSearch The collection of objects you are trying to match
+     *
+     * @return ResultObject If a match is found a success with the mapped value is returned, otherwise a failure with the original value
+     */
+    public static function mapValueInObjectCollectionWithResult(string $valueToMatch, string $attributeToMatch, string $attributeToReturn, Collection $collectionToSearch): ResultObject
+    {
+        $matchedObject = self::matchValueInObjectCollection($valueToMatch, $attributeToMatch, $collectionToSearch);
+        if(!$matchedObject || !isset($matchedObject->$attributeToReturn)) {
+            return ResultObject::fail($valueToMatch);
+        }
+        return ResultObject::success($matchedObject->$attributeToReturn);
     }
 }

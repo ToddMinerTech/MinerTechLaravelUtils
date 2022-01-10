@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ToddMinerTech\\LaravelUtils\\": "src"
+            "ToddMinerTech\\MinerTechLaravelUtils\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ToddMinerTech\\LaravelUtils\\": "tests"
+            "ToddMinerTech\\MinerTechLaravelUtils\\": "tests"
         }
     },
     "scripts": {
